@@ -19,7 +19,7 @@
 			</div>
 			<div class="row">
 				<div class="col-sm-10 text-center padding-r">
-					<input class="form-control" type="text" ng-model="item.name" name="">
+					<input placeholder="lets do it"  class="form-control" type="text" ng-model="item.name" name="">
 				</div>
 				<div class="col-sm-2 padding-l">
 					<a href="">
@@ -27,13 +27,16 @@
 					</a>
 				</div>
 			</div>
-			<div class="row" ng-if="list.length > 0" ng-repeat="(idx, item) in list">
-				<span class="col-sm-12">
-					<p>{{idx + 1}}) {{item.name}}</p>
-					<span></span>
+			<div class="row listitem" ng-if="list.length > 0" ng-repeat="(idx, item) in list">
+				<span class="col-sm-10">
+					<span>{{idx + 1}})</span>
+					<span>{{item.name}}<!-- <span ng-click="update(idx)">update</span> --></span>
+				</span>
+				<span class="col-sm-2">
+					<i ng-click="delete(idx)" class="far fa-trash-alt"></i>
 				</span>
 			</div>
-			<div ng-if="list.length == 0">
+			<div ng-if="list.length == 0" class="card noitem">
 				<p>Add items in the list</p>
 			</div>
 		</div>
