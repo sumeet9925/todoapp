@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html ng-app="todo">
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="stylesheet" type="text/css" href="./style/bootstrap4/css/bootstrap.css">
+	<link rel="stylesheet" type="text/css" href="./style/style.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300" rel="stylesheet">
+</head>
+<body>
+	<div class="container" ng-controller="mainCtrlr">
+		<div class="card card-body card-posotion">	
+			<div class="row ">
+				<div class="col-sm-12 text-center">
+					<h2>TODO</h2>				
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-10 text-center padding-r">
+					<input class="form-control" type="text" ng-model="item.name" name="">
+				</div>
+				<div class="col-sm-2 padding-l">
+					<a href="">
+						<i class="fas fa-plus-square" ng-click="addItem()"></i>
+					</a>
+				</div>
+			</div>
+			<div class="row" ng-if="list.length > 0" ng-repeat="(idx, item) in list">
+				<span class="col-sm-12">
+					<p>{{idx + 1}}) {{item.name}}</p>
+					<span></span>
+				</span>
+			</div>
+			<div ng-if="list.length == 0">
+				<p>Add items in the list</p>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="./scripts/angular.js"></script>
+	<script type="text/javascript" src="./scripts/scripts.js"></script>
+</body>
+</html>
