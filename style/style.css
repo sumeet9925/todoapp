@@ -56,6 +56,10 @@ i.fas.fa-plus-square {
 	margin: 10px; 
 }
 
+.card.noitem {
+    width: 94%;
+}
+
 @media only screen and (max-width: 600px) {
   .col-sm-2.padding-l {
     text-align: center;
@@ -63,3 +67,5 @@ i.fas.fa-plus-square {
 .card-body{
 	width: 92%;
 }
+}
+
