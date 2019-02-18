@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html ng-app="todo">
+<html ng-app="todo" ng-cloak>
 <head>
 	<title>Todo</title>
 	<meta charset="utf-8">
@@ -9,7 +9,7 @@
 	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:300" rel="stylesheet">
 </head>
-<body>
+<body ng-cloak>
 	<div class="container" ng-controller="mainCtrlr">
 		<div class="card card-body card-posotion">	
 			<div class="row ">
@@ -18,22 +18,32 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="col-sm-10 text-center padding-r">
-					<input placeholder="lets do it"  class="form-control" type="text" ng-model="item.name" name="">
-				</div>
-				<div class="col-sm-2 padding-l">
-					<a href="">
-						<i class="fas fa-plus-square" ng-click="addItem()"></i>
-					</a>
-				</div>
+					<div class="col-sm-10 text-center padding-r">
+						<input placeholder="lets do it" ng-keyup="$event.keyCode == 13 ? addItem() : null" class="form-control" type="text" ng-model="item.name">
+					</div>
+					<div class="col-sm-2 padding-l">
+						<a href="">
+							<i class="fas fa-plus-square" ng-click="addItem()"></i>
+						</a>
+					</div>
 			</div>
 			<div class="row listitem" ng-if="list.length > 0" ng-repeat="(idx, item) in list">
-				<span class="col-sm-10">
+				<span class="col-sm-8" ng-if="item.update == false">
 					<span>{{idx + 1}})</span>
-					<span>{{item.name}}<!-- <span ng-click="update(idx)">update</span> --></span>
+					<span>{{item.name}}</span>
+				</span>
+
+				<span class="col-sm-8" ng-if="item.update == true" style="padding: 0px 3px">
+					<input type="text" class="form-control" ng-model="item.name" >
+				</span>
+				<span class="col-sm-2"  ng-if="item.update == true" style="padding: 0px;">
+					<i ng-click="update(idx)" class="fas fa-check-square"></i>
 				</span>
 				<span class="col-sm-2">
 					<i ng-click="delete(idx)" class="far fa-trash-alt"></i>
+				</span>
+				<span class="col-sm-2" ng-if="item.update == false" >
+					<i ng-click="edit(idx)" class="fas fa-pen-square"></i>
 				</span>
 			</div>
 			<div ng-if="list.length == 0" class="card noitem">

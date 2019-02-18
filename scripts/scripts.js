@@ -7,7 +7,7 @@ app.controller('mainCtrlr', ['$scope','addService', function ($scope,addService)
 
 	scope.addItem = function(){
 		if(scope.item.name.length > 0){
-			scope.list = addService.add({'name':scope.item.name});
+			scope.list = addService.add({'name':scope.item.name, 'update':false});
 			scope.item.name = '';
 		}else{
 			alert("Please enter a value");
@@ -16,9 +16,12 @@ app.controller('mainCtrlr', ['$scope','addService', function ($scope,addService)
 	scope.delete = function(idx){
 		addService.delete(idx);
 	}
-	// scope.update = function(idx){
-	// 	addService.update(idx);
-	// }
+	scope.edit = function(idx){
+		scope.list[idx].update = true;
+	}
+	scope.update = function(idx){
+		addService.update(idx);
+	}
 }])
 
 app.service('addService', [function () {
@@ -33,7 +36,8 @@ app.service('addService', [function () {
 		scope.list.splice(idx,1);
 	}
 
-	// this.update = function(idx){
-	// 	scope.item.name = scope.list[idx].name;
-	// }
+	this.update = function(idx){
+		scope.list[idx].name = scope.list[idx].name;
+		scope.list[idx].update = false;
+	}
 }])
