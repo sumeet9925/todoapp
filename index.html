@@ -27,14 +27,14 @@
 						</a>
 					</div>
 			</div>
-			<div class="row listitem" ng-if="list.length > 0" ng-repeat="(idx, item) in list">
+			<div class="row listitem" ng-if="data.length > 0" ng-repeat="(idx, item) in data">
 				<span class="col-sm-8" ng-if="item.update == false">
 					<span>{{idx + 1}})</span>
 					<span>{{item.name}}</span>
 				</span>
 
 				<span class="col-sm-8" ng-if="item.update == true" style="padding: 0px 3px">
-					<input type="text" class="form-control" ng-model="item.name" >
+					<input type="text" class="form-control" ng-keyup="$event.keyCode == 13 ? update(idx) : null" ng-model="item.name" >
 				</span>
 				<span class="col-sm-2"  ng-if="item.update == true" style="padding: 0px;">
 					<i ng-click="update(idx)" class="fas fa-check-square"></i>
@@ -46,7 +46,7 @@
 					<i ng-click="edit(idx)" class="fas fa-pen-square"></i>
 				</span>
 			</div>
-			<div ng-if="list.length == 0" class="card noitem">
+			<div ng-if="data.length == 0" class="card noitem">
 				<p>Add items in the list</p>
 			</div>
 		</div>
